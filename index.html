@@ -7,10 +7,10 @@
 
     <!-- Icons / favicon -->
     <link rel="icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="lo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="lo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="lo.png">
-    <link rel="manifest" href="lo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="kl.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="kl.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="kl.png">
+    <link rel="manifest" href="kl.png">
     <meta name="theme-color" content="#ffffff">
 
     <style>
@@ -31,26 +31,30 @@
         padding:32px;
         flex-direction:column;
       }
+      /* added: header layout with logo */
       .heading-box{
-        background:#ffecec;
+        display:flex;
+        align-items:center;
+        width: 90%;
+        gap:18px;
+        background:#ffe1e1;
         border-radius:16px;
-        padding:28px 36px;
-        box-shadow: 0 8px 24px rgba(12,20,40,0.08);
-        max-width:1000px;
-        width:100%;
-        box-sizing:border-box;
+        padding:18px 24px;
       }
-      .heading-box .title{
-        margin:0;
-        font-size:28px;
-        line-height:1.05;
-        color:var(--brand);
-        letter-spacing:-0.4px;
+      .heading-inner{ display:flex; align-items:center; gap:16px; width:100%; }
+      .logo{
+        width:64px;
+        height:64px;
+        object-fit:contain;
+        border-radius:8px;
+        flex:0 0 64px;
       }
-      .heading-box .meta{
-        margin:8px 0 0 0;
-        color:var(--muted);
-        font-size:14px;
+      .heading-text{ display:inline-block; }
+      .heading-text .title{ margin:0; font-size:24px; color:var(--brand); }
+      .heading-text .meta{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
+      @media (min-width:768px){
+        .logo{ width:80px; height:80px; }
+        .heading-text .title{ font-size:32px; }
       }
 
       /* New: grid and card styles for the four boxes */
@@ -101,8 +105,13 @@
 </head>
 <body>
     <header class="heading-box" role="banner" aria-label="Kalvi Hub heading">
-        <h1 class="title" >KALVI HUB</h1>
-        <p class="meta">TNSED SYLLABUS</p>
+      <div class="heading-inner">
+        <img class="logo" src="ktl.png" alt="Kalvi Hub logo">
+        <div class="heading-text">
+          <h1 class="title">KALVI HUB</h1>
+          <p class="meta">TNSED SYLLABUS</p>
+        </div>
+      </div>
     </header>
     <main class="container" role="main" aria-label="Main sections">
       <nav class="grid" aria-label="Primary sections">
