@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALVI HUB</title>
+
+    <!-- Icons / favicon -->
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="lo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="lo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="lo.png">
+    <link rel="manifest" href="lo.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+      :root{
+        --brand: #0b5cff;
+        --muted: #6b7280;
+        --bg: #f3f6fb;
+      }
+      html,body{ height:40%; }
+      body{
+        margin: 0;
+        margin-top: 90px;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+        background:var(--bg);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:32px;
+        flex-direction:column;
+      }
+      .heading-box{
+        background:#ffecec;
+        border-radius:16px;
+        padding:28px 36px;
+        box-shadow: 0 8px 24px rgba(12,20,40,0.08);
+        max-width:1000px;
+        width:100%;
+        box-sizing:border-box;
+      }
+      .heading-box .title{
+        margin:0;
+        font-size:28px;
+        line-height:1.05;
+        color:var(--brand);
+        letter-spacing:-0.4px;
+      }
+      .heading-box .meta{
+        margin:8px 0 0 0;
+        color:var(--muted);
+        font-size:14px;
+      }
+
+      /* New: grid and card styles for the four boxes */
+      .container{
+        max-width:1000px;
+        width:100%;
+        margin-top:20px;
+        box-sizing:border-box;
+      }
+      .grid{
+        display:grid;
+        gap:16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .card{
+        display:block;
+        background:#ffffff;
+        border-radius:12px;
+        padding:18px;
+        text-decoration:none;
+        color:inherit;
+        box-shadow: 0 6px 18px rgba(12,20,40,0.06);
+        transition:transform .12s ease, box-shadow .12s ease;
+        border:1px solid rgba(11,92,255,0.05);
+      }
+      .card:hover,
+      .card:focus{
+        transform:translateY(-6px);
+        box-shadow: 0 14px 30px rgba(12,20,40,0.10);
+        outline:none;
+      }
+      .card h2{
+        margin:0 0 8px 0;
+        font-size:18px;
+        color:var(--brand);
+      }
+      .card .card-meta{
+        margin:0;
+        color:var(--muted);
+        font-size:13px;
+      }
+
+      @media (min-width:768px){
+        .heading-box{ padding:36px 44px; }
+        .heading-box .title{ font-size:34px; }
+      }
+    </style>
+</head>
+<body>
+    <header class="heading-box" role="banner" aria-label="Kalvi Hub heading">
+        <h1 class="title" >KALVI HUB</h1>
+        <p class="meta">TNSED SYLLABUS</p>
+    </header>
+    <main class="container" role="main" aria-label="Main sections">
+      <nav class="grid" aria-label="Primary sections">
+        <a class="card" href="page1.html">
+          <h2>Class 9th</h2>
+          <p class="card-meta">Applications, eligibility and forms</p>
+        </a>
+
+        <a class="card" href="page2.html">
+          <h2>Class 10th</h2>
+          <p class="card-meta">Dates, syllabus and results</p>
+        </a>
+
+        <a class="card" href="page3.html">
+          <h2>Class 11th</h2>
+          <p class="card-meta">Available awards and how to apply</p>
+        </a>
+
+        <a class="card" href="page4.html">
+          <h2>Class 12th</h2>
+          <p class="card-meta">Study guides and learning materials</p>
+        </a>
+      </nav>
+    </main>
+
+</body>
+</html>
