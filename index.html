@@ -1,366 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KALVI HUB</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KALVI HUB</title>
 
-    <!-- Icons / favicon -->
-    <link rel="icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="kl.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="kl.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="kl.png">
-    <link rel="manifest" href="kl.png">
-    <meta name="theme-color" content="#ffffff">
+  <!-- Icons / favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="kl.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="kl.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="kl.png">
+  <link rel="manifest" href="kl.png">
+  <meta name="theme-color" content="#ffffff">
 
-    <style>
-      :root{
-        --brand: #0b5cff;
-        --muted: #6b7280;
-        --bg: #f3f6fb;
-        --accent: #f97373;
-      }
-      html,body{ height:40%; }
-      body{
-        margin: 0;
-        margin-top: 90px;
-        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
-        background:var(--bg);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:32px;
-        flex-direction:column;
-      }
-      /* added: header layout with logo */
-      .heading-box{
-        display:flex;
-        align-items:center;
-        width: 90%;
-        gap:18px;
-        background:#ffe1e1;
-        border-radius:16px;
-        padding:18px 24px;
-      }
-      .heading-inner{ display:flex; align-items:center; gap:16px; width:100%; }
-      .logo{
-        width:64px;
-        height:64px;
-        object-fit:contain;
-        border-radius:8px;
-        flex:0 0 64px;
-      }
-      .heading-text{ display:inline-block; }
-      .heading-text .title{ margin:0; font-size:24px; color:var(--brand); }
-      .heading-text .meta{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
-      @media (min-width:768px){
-        .logo{ width:80px; height:80px; }
-        .heading-text .title{ font-size:32px; }
-      }
+  <style>
+    :root{
+      --brand: #0b5cff;
+      --muted: #6b7280;
+      --bg: #f3f6fb;
+      --accent: #f97373;
+    }
+    html,body{ height:40%; }
+    body{
+      margin: 0;
+      margin-top: 90px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      flex-direction:column;
+    }
+    /* header / cards (unchanged) */
+    .heading-box{ display:flex; align-items:center; width:90%; gap:18px; background:#ffe1e1; border-radius:16px; padding:18px 24px; }
+    .heading-inner{ display:flex; align-items:center; gap:16px; width:100%; }
+    .logo{ width:64px; height:64px; object-fit:contain; border-radius:8px; flex:0 0 64px; }
+    .heading-text{ display:inline-block; }
+    .heading-text .title{ margin:0; font-size:24px; color:var(--brand); }
+    .heading-text .meta{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
 
-      /* New: grid and card styles for the four boxes */
-      .container{
-        max-width:1000px;
-        width:100%;
-        margin-top:20px;
-        box-sizing:border-box;
-      }
-      .grid{
-        display:grid;
-        gap:16px;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      }
-      /* card is now a div so we can include multiple links inside */
-      .card{
-        background:#ffffff;
-        border-radius:12px;
-        padding:18px;
-        color:inherit;
-        box-shadow: 0 6px 18px rgba(12,20,40,0.06);
-        transition:transform .12s ease, box-shadow .12s ease;
-        border:1px solid rgba(11,92,255,0.05);
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-      }
-      .card:hover,
-      .card:focus-within{
-        transform:translateY(-6px);
-        box-shadow: 0 14px 30px rgba(12,20,40,0.10);
-        outline:none;
-      }
-      .card-main{
-        display:block;
-        text-decoration:none;
-        color:var(--brand);
-      }
-      .card h2{
-        margin:0;
-        font-size:18px;
-      }
-      .card .card-meta{
-        margin:0;
-        color:var(--muted);
-        font-size:13px;
-      }
+    .container{ max-width:1000px; width:100%; margin-top:20px; box-sizing:border-box; }
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card{ background:#ffffff; border-radius:12px; padding:18px; color:inherit; box-shadow:0 6px 18px rgba(12,20,40,0.06); transition:transform .12s ease; border:1px solid rgba(11,92,255,0.05); display:flex; flex-direction:column; gap:12px; position:relative; }
+    .card:hover, .card:focus-within{ transform:translateY(-6px); box-shadow: 0 14px 30px rgba(12,20,40,0.10); outline:none; }
+    .card-main{ display:block; text-decoration:none; color:var(--brand); }
+    .card h2{ margin:0; font-size:18px; }
+    .card .card-meta{ margin:0; color:var(--muted); font-size:13px; }
 
-      /* actions inside card */
-      .card-actions{
-        display:flex;
-        gap:8px;
-        margin-top:4px;
-      }
-      .btn{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        gap:8px;
-        padding:8px 10px;
-        border-radius:8px;
-        font-size:13px;
-        text-decoration:none;
-        border:1px solid transparent;
-        cursor:pointer;
-        transition:opacity .12s ease, transform .12s ease;
-        color:var(--brand); /* default color for spinner (currentColor) */
-      }
-      .btn:focus{ outline:2px solid rgba(11,92,255,0.12); outline-offset:2px; }
-      .btn-secondary{
-        background:transparent;
-        color:var(--brand);
-        border-color:rgba(11,92,255,0.08);
-      }
-      .btn-primary{
-        background:var(--accent);
-        color:#fff;
-        border-color:transparent;
-      }
+    .card-actions{ display:flex; gap:8px; margin-top:4px; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:8px 10px; border-radius:8px; font-size:13px; text-decoration:none; border:1px solid transparent; cursor:pointer; transition:opacity .12s ease, transform .12s ease; color:var(--brand); }
+    .btn:focus{ outline:2px solid rgba(11,92,255,0.12); outline-offset:2px; }
+    .btn-secondary{ background:transparent; color:var(--brand); border-color:rgba(11,92,255,0.08); }
+    .btn-primary{ background:var(--accent); color:#fff; border-color:transparent; }
 
-      /* loading state */
-      .btn.loading{
-        pointer-events:none;
-        opacity:0.9;
-      }
-      .btn .spinner{
-        display:inline-block;
-        vertical-align:middle;
-      }
+    .btn.loading{ pointer-events:none; opacity:0.9; }
+    .btn .spinner{ display:inline-block; vertical-align:middle; }
 
-      /* ensure card is positioning context for dropdown */
-      .card{ position:relative; }
+    /* practice menu */
+    .practice-menu{ position:absolute; right:12px; bottom:54px; min-width:180px; background:#fff; border-radius:10px; box-shadow:0 10px 30px rgba(12,20,40,0.12); border:1px solid rgba(11,92,255,0.06); padding:8px; display:none; z-index:40; }
+    .practice-menu[data-open="true"]{ display:block; }
+    .practice-menu a, .practice-menu button{ display:flex; align-items:center; gap:8px; padding:8px 10px; color:var(--brand); text-decoration:none; border-radius:6px; font-size:13px; background:transparent; border:0; width:100%; text-align:left; cursor:pointer; }
+    .practice-menu a:hover, .practice-menu a:focus, .practice-menu button:hover, .practice-menu button:focus{ background:rgba(11,92,255,0.06); outline:none; }
 
-      /* practice dropdown/menu */
-      .practice-menu{
-        position:absolute;
-        right:12px;
-        bottom:54px;
-        min-width:180px;
-        background:#fff;
-        border-radius:10px;
-        box-shadow:0 10px 30px rgba(12,20,40,0.12);
-        border:1px solid rgba(11,92,255,0.06);
-        padding:8px;
-        display:none;
-        z-index:40;
-      }
-      .practice-menu[data-open="true"]{ display:block; }
-      .practice-menu a{
-        display:flex;
-        align-items:center;
-        gap:8px;
-        padding:8px 10px;
-        color:var(--brand);
-        text-decoration:none;
-        border-radius:6px;
-        font-size:13px;
-      }
-      .practice-menu a:hover,
-      .practice-menu a:focus{
-        background:rgba(11,92,255,0.06);
-        outline:none;
-      }
+    .practice-menu .menu-title{ padding:6px 10px; font-size:12px; color:var(--muted); }
 
-      /* small label inside menu */
-      .practice-menu .menu-title{
-        padding:6px 10px;
-        font-size:12px;
-        color:var(--muted);
-      }
+    /* subject modal / popover */
+    .subject-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(6,8,14,0.4); z-index:80; }
+    .subject-modal[data-open="true"]{ display:flex; }
+    .subject-panel{ background:#fff; border-radius:10px; padding:16px; width:320px; max-width:90%; box-shadow:0 18px 50px rgba(12,20,40,0.2); }
+    .subject-panel h3{ margin:0 0 8px 0; font-size:16px; color:var(--brand); }
+    .subject-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    .subject-btn{ padding:8px 10px; border-radius:8px; border:1px solid rgba(11,92,255,0.08); background:transparent; cursor:pointer; color:var(--brand); }
+    .subject-btn.primary{ background:var(--accent); color:#fff; border-color:transparent; }
+    .subject-panel .cancel{ margin-top:10px; background:#eef2ff; color:var(--brand); padding:8px 10px; border-radius:8px; border:0; cursor:pointer; }
 
-      /* adjust location on small screens */
-      @media (max-width:420px){
-        .practice-menu{ right:8px; left:8px; bottom:56px; }
-      }
-
-      @media (min-width:768px){
-        .heading-box{ padding:36px 44px; }
-        .heading-box .title{ font-size:34px; }
-      }
-    </style>
+    @media (min-width:768px){
+      .heading-box{ padding:36px 44px; }
+      .heading-box .title{ font-size:34px; }
+    }
+  </style>
 </head>
 <body>
-    <header class="heading-box" role="banner" aria-label="Kalvi Hub heading">
-      <div class="heading-inner">
-        <img class="logo" src="ktl.png" alt="Kalvi Hub logo">
-        <div class="heading-text">
-          <h1 class="title">KALVI HUB</h1>
-          <p class="meta">TNSED SYLLABUS</p>
+  <header class="heading-box" role="banner" aria-label="Kalvi Hub heading">
+    <div class="heading-inner">
+      <img class="logo" src="ktl.png" alt="Kalvi Hub logo">
+      <div class="heading-text">
+        <h1 class="title">KALVI HUB</h1>
+        <p class="meta">TNSED SYLLABUS</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main" aria-label="Main sections">
+    <nav class="grid" aria-label="Primary sections">
+      <!-- Class 9th card -->
+      <div class="card" aria-labelledby="c9-title">
+        <a id="c9-title" class="card-main" href="page1.html">
+          <h2>Class 9th</h2>
+          <p class="card-meta">BOOK INSIDE QUESTIONS</p>
+        </a>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="kl.pdf">PDF</a>
+          <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c9">Practice</button>
+          <div id="menu-c9" class="practice-menu" role="menu" aria-label="Class 9 practice options" data-open="false">
+            <div class="menu-title">Choose an activity</div>
+            <!-- changed: data-target used to open subject selection before navigating -->
+            <button class="practice-item" role="menuitem" data-target="page1-practice-quiz1.html">Quiz</button>
+          </div>
         </div>
       </div>
-    </header>
-    <main class="container" role="main" aria-label="Main sections">
-      <nav class="grid" aria-label="Primary sections">
 
-        <!-- Class 9th card with two options -->
-        <div class="card" aria-labelledby="c9-title">
-          <a id="c9-title" class="card-main" href="page1.html">
-            <h2>Class 9th</h2>
-            <p class="card-meta">BOOK INSIDE QUESTIONS</p>
-          </a>
-          <div class="card-actions">
-            <a class="btn btn-secondary" href="kl.png">PDF</a>
-
-            <!-- changed: practice is now a toggle button that opens a small quiz/options menu -->
-            <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c9">Practice</button>
-
-            <!-- practice menu for Class 9th -->
-            <div id="menu-c9" class="practice-menu" role="menu" aria-label="Class 9 practice options" data-open="false">
-              <div class="menu-title">Choose a quiz</div>
-              <a class="practice-item" role="menuitem" href="page1-practice-quiz1.html">Quiz</a>
-            </div>
+      <!-- Class 10th card -->
+      <div class="card" aria-labelledby="c10-title">
+        <a id="c10-title" class="card-main" href="page2.html">
+          <h2>Class 10th</h2>
+          <p class="card-meta">BOOK INSIDE QUESTIONS</p>
+        </a>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="page2-syllabus.pdf">PDF</a>
+          <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c10">Practice</button>
+          <div id="menu-c10" class="practice-menu" role="menu" aria-label="Class 10 practice options" data-open="false">
+            <div class="menu-title">Choose an activity</div>
+            <button class="practice-item" role="menuitem" data-target="page2-practice-quiz1.html">Quiz</button>
           </div>
         </div>
+      </div>
 
-        <!-- Class 10th card with two options -->
-        <div class="card" aria-labelledby="c10-title">
-          <a id="c10-title" class="card-main" href="page2.html">
-            <h2>Class 10th</h2>
-            <p class="card-meta">BOOK INSIDE QUESTIONS</p>
-          </a>
-          <div class="card-actions">
-            <a class="btn btn-secondary" href="page2-syllabus.pdf">PDF</a>
-            <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c10">Practice</button>
-            <div id="menu-c10" class="practice-menu" role="menu" aria-label="Class 10 practice options" data-open="false">
-              <div class="menu-title">Choose a quiz</div>
-              <a class="practice-item" role="menuitem" href="page2-practice-quiz1.html">Quiz</a>
-            </div>
+      <!-- Class 11th card -->
+      <div class="card" aria-labelledby="c11-title">
+        <a id="c11-title" class="card-main" href="page3.html">
+          <h2>Class 11th</h2>
+          <p class="card-meta">BOOK INSIDE QUESTIONS</p>
+        </a>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="page3-syllabus.pdf">PDF</a>
+          <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c11">Practice</button>
+          <div id="menu-c11" class="practice-menu" role="menu" aria-label="Class 11 practice options" data-open="false">
+            <div class="menu-title">Choose an activity</div>
+            <button class="practice-item" role="menuitem" data-target="page3-practice-quiz1.html">Quiz</button>
           </div>
         </div>
+      </div>
 
-        <!-- Class 11th card with two options -->
-        <div class="card" aria-labelledby="c11-title">
-          <a id="c11-title" class="card-main" href="page3.html">
-            <h2>Class 11th</h2>
-            <p class="card-meta">BOOK INSIDE QUESTIONS</p>
-          </a>
-          <div class="card-actions">
-            <a class="btn btn-secondary" href="page3-syllabus.pdf">PDF</a>
-            <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c11">Practice</button>
-            <div id="menu-c11" class="practice-menu" role="menu" aria-label="Class 11 practice options" data-open="false">
-              <div class="menu-title">Choose a quiz</div>
-              <a class="practice-item" role="menuitem" href="page3-practice-quiz1.html">Quiz</a>
-            </div>
+      <!-- Class 12th card -->
+      <div class="card" aria-labelledby="c12-title">
+        <a id="c12-title" class="card-main" href="page4.html">
+          <h2>Class 12th</h2>
+          <p class="card-meta">BOOK INSIDE QUESTIONS</p>
+        </a>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="page4-syllabus.pdf">PDF</a>
+          <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c12">Practice</button>
+          <div id="menu-c12" class="practice-menu" role="menu" aria-label="Class 12 practice options" data-open="false">
+            <div class="menu-title">Choose an activity</div>
+            <button class="practice-item" role="menuitem" data-target="page4-practice-quiz1.html">Quiz</button>
           </div>
         </div>
+      </div>
+    </nav>
+  </main>
 
-        <!-- Class 12th card with two options -->
-        <div class="card" aria-labelledby="c12-title">
-          <a id="c12-title" class="card-main" href="page4.html">
-            <h2>Class 12th</h2>
-            <p class="card-meta">BOOK INSIDE QUESTIONS</p>
-          </a>
-          <div class="card-actions">
-            <a class="btn btn-secondary" href="page4-syllabus.pdf">PDF</a>
-            <button class="btn btn-primary practice-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-menu="menu-c12">Practice</button>
-            <div id="menu-c12" class="practice-menu" role="menu" aria-label="Class 12 practice options" data-open="false">
-              <div class="menu-title">Choose a quiz</div>
-              <a class="practice-item" role="menuitem" href="page4-practice-quiz1.html">Quiz</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </main>
+  <!-- Subject selection modal (opens before navigating to quiz) -->
+  <div id="subjectModal" class="subject-modal" role="dialog" aria-modal="true" aria-hidden="true" data-open="false">
+    <div class="subject-panel" role="document">
+      <h3>Select Subject</h3>
+      <div class="subject-list" id="subjectList">
+        <button class="subject-btn" data-subject="math">Math</button>
+        <button class="subject-btn" data-subject="science">Science</button>
+      </div>
+      <button class="cancel" id="subjectCancel">Cancel</button>
+    </div>
+  </div>
 
-    <script>
-      // handle clicks for PDF/loading and practice menu toggle + navigation
+  <script>
+    // handle clicks for PDF/loading and practice menu toggle + subject selection flow
+    (function(){
+      const subjectModal = document.getElementById('subjectModal');
+      const subjectList = document.getElementById('subjectList');
+      const subjectCancel = document.getElementById('subjectCancel');
+      let pendingTarget = null; // href (page) to navigate once subject chosen
+
       document.addEventListener('click', function (e) {
-        // close menus if clicking outside
         const clickedToggle = e.target.closest('.practice-toggle');
-        const clickedMenuItem = e.target.closest('.practice-item');
+        const clickedPracticeItem = e.target.closest('.practice-item');
+        const clickedBtn = e.target.closest('a.btn');
 
-        // If user clicked a practice toggle button -> open/close its menu
+        // practice toggle opens/closes menu
         if (clickedToggle) {
-          // allow modifier keys for future behavior
           e.preventDefault();
           const menuId = clickedToggle.dataset.menu;
           const menu = document.getElementById(menuId);
           if (!menu) return;
           const isOpen = menu.getAttribute('data-open') === 'true';
-          // close any other open menus first
+          // close other menus
           document.querySelectorAll('.practice-menu[data-open="true"]').forEach(m => {
             m.setAttribute('data-open', 'false');
             const btn = document.querySelector('.practice-toggle[data-menu="'+m.id+'"]');
             if (btn) btn.setAttribute('aria-expanded', 'false');
           });
-          // toggle this menu
           menu.setAttribute('data-open', String(!isOpen));
           clickedToggle.setAttribute('aria-expanded', String(!isOpen));
           return;
         }
 
-        // If clicked a practice menu item -> show loading and navigate
-        if (clickedMenuItem) {
-          // allow modifier keys / middle-click
+        // clicking a practice item -> open subject modal before navigation
+        if (clickedPracticeItem) {
+          // allow modifiers for new tab
           if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
           e.preventDefault();
-          const href = clickedMenuItem.getAttribute('href');
-          if (!href) return;
-
-          // show a small inline loading state on the clicked item
-          if (!clickedMenuItem.dataset.origHtml) clickedMenuItem.dataset.origHtml = clickedMenuItem.innerHTML;
-          clickedMenuItem.innerHTML = '<svg width="14" height="14" viewBox="0 0 50 50" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"/></circle></svg> Loading...';
-          setTimeout(function(){ window.location.href = href; }, 160);
-          return;
-        }
-
-        // Otherwise handle .btn anchors (PDF) — keep existing behavior: show loading and navigate
-        const btn = e.target.closest('a.btn');
-        if (!btn) {
-          // click outside any control -> close menus
+          const targetPage = clickedPracticeItem.dataset.target;
+          if (!targetPage) return;
+          // close all menus
           document.querySelectorAll('.practice-menu[data-open="true"]').forEach(m => {
             m.setAttribute('data-open', 'false');
             const btn = document.querySelector('.practice-toggle[data-menu="'+m.id+'"]');
             if (btn) btn.setAttribute('aria-expanded', 'false');
           });
+
+          // open subject modal
+          pendingTarget = targetPage;
+          subjectModal.setAttribute('data-open', 'true');
+          subjectModal.setAttribute('aria-hidden', 'false');
+          // focus first subject button for accessibility
+          const first = subjectList.querySelector('.subject-btn');
+          if (first) first.focus();
           return;
         }
 
-        // allow open-in-new-tab
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
-        const href = btn.getAttribute('href');
-        if (!href) return;
-        e.preventDefault();
+        // clicking a PDF button (anchor .btn) -> loading + navigate
+        if (clickedBtn) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+          const href = clickedBtn.getAttribute('href');
+          if (!href) return;
+          e.preventDefault();
+          if (clickedBtn.classList.contains('loading')) return;
+          clickedBtn.classList.add('loading');
+          clickedBtn.setAttribute('aria-busy','true');
+          if (!clickedBtn.dataset.origHtml) clickedBtn.dataset.origHtml = clickedBtn.innerHTML;
+          const spinner = '<svg class="spinner" width="16" height="16" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"/></circle></svg>';
+          clickedBtn.innerHTML = spinner + '<span style="margin-left:6px">Loading...</span>';
+          setTimeout(()=> window.location.href = href, 120);
+          return;
+        }
 
-        if (btn.classList.contains('loading')) return;
-        btn.classList.add('loading');
-        btn.setAttribute('aria-busy', 'true');
-        if (!btn.dataset.origHtml) btn.dataset.origHtml = btn.innerHTML;
-
-        const spinner = '<svg class="spinner" width="16" height="16" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"/></circle></svg>';
-        btn.innerHTML = spinner + '<span style="margin-left:6px">Loading...</span>';
-        setTimeout(function(){ window.location.href = href; }, 120);
+        // click else where -> close menus & modal
+        if (subjectModal.getAttribute('data-open') === 'true') {
+          // clicking outside modal closes it
+          if (!e.target.closest('.subject-panel')) {
+            closeSubjectModal();
+          }
+        }
+        document.querySelectorAll('.practice-menu[data-open="true"]').forEach(m => {
+          m.setAttribute('data-open','false');
+          const btn = document.querySelector('.practice-toggle[data-menu="'+m.id+'"]');
+          if (btn) btn.setAttribute('aria-expanded','false');
+        });
       });
 
-      // close menus with Escape
+      // subject selection buttons
+      subjectList.addEventListener('click', function(e){
+        const btn = e.target.closest('.subject-btn');
+        if (!btn) return;
+        const subject = btn.dataset.subject;
+        if (!pendingTarget) return;
+        // build destination (add subject query param)
+        const url = pendingTarget + '?subject=' + encodeURIComponent(subject);
+        // show a tiny loading then navigate
+        // create simple full-screen spinner on modal
+        subjectModal.querySelector('.subject-panel').innerHTML = '<div style="padding:28px;text-align:center"><svg width="36" height="36" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"/></circle></svg><div style="margin-top:8px;color:var(--muted)">Opening quiz…</div></div>';
+        setTimeout(()=> window.location.href = url, 200);
+      });
+
+      // cancel button
+      subjectCancel.addEventListener('click', function(){ closeSubjectModal(); });
+
+      // close modal helper
+      function closeSubjectModal(){
+        pendingTarget = null;
+        subjectModal.setAttribute('data-open','false');
+        subjectModal.setAttribute('aria-hidden','true');
+        // restore modal inner HTML (quick approach: reload page fragment would restore, so rebuild panel)
+        subjectModal.querySelector('.subject-panel').innerHTML = '<h3>Select Subject</h3><div class="subject-list" id="subjectList"><button class="subject-btn" data-subject="math">Math</button><button class="subject-btn" data-subject="science">Science</button><button class="subject-btn" data-subject="english">English</button><button class="subject-btn" data-subject="social">Social</button></div><button class="cancel" id="subjectCancel">Cancel</button>';
+        // re-wire cancel and subjectList references after rebuilding
+        // (re-query to update references used above)
+        const newSubjectList = subjectModal.querySelector('.subject-list');
+        const newCancel = subjectModal.querySelector('.cancel');
+        // attach listeners again
+        if (newSubjectList) {
+          newSubjectList.addEventListener('click', function(e){
+            const btn = e.target.closest('.subject-btn');
+            if (!btn) return;
+            const subject = btn.dataset.subject;
+            if (!pendingTarget) return;
+            const url = pendingTarget + '?subject=' + encodeURIComponent(subject);
+            subjectModal.querySelector('.subject-panel').innerHTML = '<div style="padding:28px;text-align:center"><svg width="36" height="36" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"/></circle></svg><div style="margin-top:8px;color:var(--muted)">Opening quiz…</div></div>';
+            setTimeout(()=> window.location.href = url, 200);
+          });
+        }
+        if (newCancel) newCancel.addEventListener('click', closeSubjectModal);
+      }
+
+      // keyboard: Esc closes menus/modal
       document.addEventListener('keydown', function(e){
         if (e.key === 'Escape') {
           document.querySelectorAll('.practice-menu[data-open="true"]').forEach(m => {
-            m.setAttribute('data-open', 'false');
+            m.setAttribute('data-open','false');
             const btn = document.querySelector('.practice-toggle[data-menu="'+m.id+'"]');
-            if (btn) btn.setAttribute('aria-expanded', 'false');
+            if (btn) btn.setAttribute('aria-expanded','false');
           });
+          if (subjectModal.getAttribute('data-open') === 'true') closeSubjectModal();
         }
       });
-    </script>
+    })();
+  </script>
 </body>
 </html>
