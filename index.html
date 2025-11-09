@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="main.js" defer type="module"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KALVI HUB</title>
 
@@ -34,7 +35,7 @@
     }
     /* header / cards (unchanged) */
     .heading-box{ display:flex; align-items:center; width:90%; gap:18px; background:#ffe1e1; border-radius:16px; padding:18px 24px; }
-    .heading-inner{ display:flex; align-items:center; gap:16px; width:100%; }
+    .heading-inner{ display:flex; align-items:center; gap:16px; width:100%; justify-content:space-between; /* keep logo/text left, actions right */ }
     .logo{ width:64px; height:64px; object-fit:contain; border-radius:8px; flex:0 0 64px; }
     .heading-text{ display:inline-block; }
     .heading-text .title{ margin:0; font-size:24px; color:var(--brand); }
@@ -75,6 +76,39 @@
     .subject-btn.primary{ background:var(--accent); color:#fff; border-color:transparent; }
     .subject-panel .cancel{ margin-top:10px; background:#eef2ff; color:var(--brand); padding:8px 10px; border-radius:8px; border:0; cursor:pointer; }
 
+    /* changed code: layout for heading-inner and Google button styles */
+    .heading-inner{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      width:100%;
+      justify-content:space-between; /* keep logo/text left, actions right */
+    }
+
+    .heading-left{ display:flex; align-items:center; gap:16px; }
+
+    .header-actions{ display:flex; align-items:center; gap:12px; }
+
+    .google-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      cursor:pointer;
+      font-weight:600;
+      color:#202124;
+      box-shadow:0 2px 6px rgba(15,23,42,0.04);
+    }
+    .google-btn:focus{ outline:2px solid rgba(11,92,255,0.12); outline-offset:2px; }
+    .google-icon{
+      width:18px;
+      height:18px;
+      display:inline-block;
+    }
+
     @media (min-width:768px){
       .heading-box{ padding:36px 44px; }
       .heading-box .title{ font-size:34px; }
@@ -84,10 +118,20 @@
 <body>
   <header class="heading-box" role="banner" aria-label="Kalvi Hub heading">
     <div class="heading-inner">
-      <img class="logo" src="ktl.png" alt="Kalvi Hub logo">
-      <div class="heading-text">
-        <h1 class="title">KALVI HUB</h1>
-        <p class="meta">TNSED SYLLABUS</p>
+      <div class="heading-left">
+        <img class="logo" src="ktl.png" alt="Kalvi Hub logo">
+        <div class="heading-text">
+          <h1 class="title">KALVI HUB</h1>
+          <p class="meta">TNSED SYLLABUS</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Google sign-in button: replace href/action with your auth endpoint or implement Google Identity -->
+        <button id="googleSignIn" class="google-btn" aria-label="Sign in with Google" type="button">
+          <img class="google-icon" src="google-icon.svg" alt="">
+          Sign in with Google
+        </button>
       </div>
     </div>
   </header>
@@ -313,6 +357,14 @@
         }
       });
     })();
+  </script>
+  <script>
+    // changed code: Google sign-in click -> redirect to server auth endpoint (implement /auth/google on server)
+    document.getElementById('googleSignIn')?.addEventListener('click', function () {
+      // If you use a server-side OAuth flow, redirect to your provider endpoint:
+      window.location.href = '/auth/google';
+      // Alternatively integrate Google Identity JS here; this is a placeholder redirect.
+    });
   </script>
 </body>
 </html>
